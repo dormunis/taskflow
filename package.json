@@ -1,0 +1,17 @@
+{
+  "name": "productivity-extension",
+  "version": "1.0.0",
+  "description": "A bunch of productivity shortcuts for Chrome to sync with other productivity tools (such as Todoist and Obsidian)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chrome",
+    "productivity",
+    "obsidian",
+    "todoist"
+  ],
+  "author": "Dor Munis",
+  "license": "ISC"
+}

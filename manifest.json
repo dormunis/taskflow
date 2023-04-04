@@ -1,0 +1,35 @@
+{
+    "name": "Productivity utilties",
+    "version": "1.0",
+    "description": "Productivity utilties for Toodist and Obsidian",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab",
+        "notifications",
+        "storage",
+        "webRequest"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_title": "Productivity utilties",
+        "default_popup": "popup.html"
+    },
+    "commands": {
+        "add-todoist-task": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+T",
+                "mac": "MacCtrl+Shift+T"
+            },
+            "description": "Add a task to Todoist with the current webpage"
+        },
+        "add-obsidian-reference": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+R",
+                "mac": "MacCtrl+Shift+R"
+            },
+            "description": "Add a reference note to Obsidian based on the current webpage"
+        }
+    }
+}
