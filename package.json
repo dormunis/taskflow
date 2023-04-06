@@ -1,6 +1,6 @@
 {
   "name": "productivity-extension",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A bunch of productivity shortcuts for Chrome to sync with other productivity tools (such as Todoist and Obsidian)",
   "main": "index.js",
   "scripts": {
@@ -13,5 +13,17 @@
     "todoist"
   ],
   "author": "Dor Munis",
-  "license": "ISC"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dormunis/taskflow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dormunis/taskflow/issues"
+  },
+  "homepage": "https://github.com/dormunis/taskflow#readme",
+  "devDependencies": {
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1"
+  }
 }

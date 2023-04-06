@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>taskflow</title>
-  <script src="popup.js" defer></script>
+  <script src="todoist.js" defer></script>
+  <script src="obsidian.js" defer></script>
   <script src="../config.js"></script>
   <style>
 :root {
@@ -33,15 +34,7 @@
         }
     }
 
-    img {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 8px;
-    }
-
     .service {
-        display: flex;
-        align-items: center;
         margin-bottom: 16px;
     }
 
@@ -64,7 +57,49 @@
         margin-right: 8px;
         width: 100%;
     }
-    
+
+    #obsidianConfig {
+        background-color: hsl(252, 9%, 14%);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    #obsidianInputBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    #obsidianInputContainer {
+        display: flex;
+        align-items: center;
+        background-color: hsl(252, 6%, 20%);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    #obsidianInputContainer input[type="text"] {
+        flex: 4;
+        height: 30px;
+    }
+
+    #obsidianSaveButton {
+        flex: 1;
+        height: 35px;
+    }
+
+    #obsidianInputContainer button {
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+    #todoistConfig{
+        background-color: hsl(7, 28%, 22%);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
     .todoist button {
         background-color: var(--todoist-button-background-color);
     }
@@ -83,17 +118,19 @@
   </style>
 </head>
 <body>
-  <div id="signIn" class="service todoist">
-    <button id="signInButton">Sign in with Todoist</button>
-  </div>
+    <div id="todoistConfig" class="service todoist">
+        <button id="signInButton">Sign in with Todoist</button>
+        <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
+    </div>
 
-  <div id="signedIn" style="display:none;" class="service todoist">
-    <button id="signOutButton">Sign out of Todoist</button>
-  </div>
-  
-  <div class="service obsidian">
-      <input type="file" id="obsidianVaultPath" webkitdirectory style="display: none;" />
-      <button id="obsidianConfigureVault">Configure Obsidian Vault</button>
+  <div id="obsidianConfig" class="service obsidian">
+      <button id="obsidianEnableButton">Enable Obsidian</button>
+      <div id="obsidianInputBox" style="display: none;">
+          <div id="obsidianInputContainer">
+              <input type="text" placeholder="Enter vault name (optional)">
+              <button id="obsidianSaveButton">Save</button>
+          </div>
+      </div>
   </div>
 </body>
 </html>
