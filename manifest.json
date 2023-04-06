@@ -1,6 +1,6 @@
 {
     "name": "Productivity utilties",
-    "version": "1.0",
+    "version": "0.1",
     "description": "Productivity utilties for Toodist and Obsidian",
     "manifest_version": 3,
     "permissions": [
@@ -16,12 +16,11 @@
         "128": "res/cog-128.png"
     },
     "action": {
-        "default_popup": "popup.html"
+        "default_popup": "popup/popup.html"
     },
     "background": {
         "service_worker": "background.js"
     },
-    "minimum_chrome_version": "92",
     "commands": {
         "add-todoist-task": {
             "suggested_key": {

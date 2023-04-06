@@ -1,3 +1,21 @@
+// Obsidian stuff
+document.addEventListener('DOMContentLoaded', () => {
+  const uploadButton = document.getElementById('obsidianConfigureVault');
+  const fileInput = document.getElementById('obsidianVaultPath');
+
+  uploadButton.addEventListener('click', () => {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      console.log('Selected file:', file.name);
+    }
+  });
+});
+
+// Todoist stuff
 document.addEventListener("DOMContentLoaded", async () => {
   const token = await getAccessToken();
   if (token) {

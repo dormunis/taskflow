@@ -1,2 +1,2 @@
-importScripts("./todoist.js");
-importScripts("./obsidian.js");
+importScripts("./workers/todoist.js");
+importScripts("./workers/obsidian.js");

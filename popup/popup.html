@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>taskflow</title>
   <script src="popup.js" defer></script>
-  <script src="config.js"></script>
+  <script src="../config.js"></script>
   <style>
 :root {
     --background-color-light: #ffffff;
@@ -92,7 +92,8 @@
   </div>
   
   <div class="service obsidian">
-      <button>Configure Obsidian</button>
+      <input type="file" id="obsidianVaultPath" webkitdirectory style="display: none;" />
+      <button id="obsidianConfigureVault">Configure Obsidian Vault</button>
   </div>
 </body>
 </html>
