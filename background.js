@@ -1,16 +1,3 @@
-function testNotification() {
-    chrome.notifications.create(null, {
-        type: "basic",
-        iconUrl: "res/todoist-128.png", // Make sure to have an icon.png file in your extension directory
-        title: "Test Notification",
-        message: "This is a test notification.",
-    });
-}
-
-chrome.runtime.onInstalled.addListener(() => {
-    testNotification();
-});
-
 chrome.commands.onCommand.addListener(async (command) => {
     if (command === "add-todoist-task") {
         const token = await getAccessToken();
