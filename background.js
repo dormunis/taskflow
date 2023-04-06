@@ -9,6 +9,11 @@ chrome.commands.onCommand.addListener(async (command) => {
                 addTask(token, tabInfo.title, tabInfo.url);
             });
         }
+    } else if (command === "open-random-todoist-article") {
+        const token = await getAccessToken();
+        if (token) {
+            openRandomTodoistArticle(token);
+        }
     } else if (command === "add-obsidian-reference") {
         createNewObsidianNote();
     } else {

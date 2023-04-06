@@ -29,6 +29,13 @@
             },
             "description": "Add Todoist task"
         },
+        "open-random-todoist-article": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+A",
+                "mac": "MacCtrl+Shift+A"
+            },
+            "description": "Open random Todoist article"
+        },
         "add-obsidian-reference": {
             "suggested_key": {
                 "default": "Ctrl+Shift+R",
