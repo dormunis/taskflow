@@ -21,6 +21,7 @@
     "background": {
         "service_worker": "background.js"
     },
+    "minimum_chrome_version": "92",
     "commands": {
         "add-todoist-task": {
             "suggested_key": {

@@ -3,41 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todoist Task Adder</title>
+  <title>taskflow</title>
   <script src="popup.js" defer></script>
   <script src="config.js"></script>
   <style>
+:root {
+    --background-color-light: #ffffff;
+    --background-color-dark: #1a1a1a;
+    --text-color-light: #000000;
+    --text-color-dark: #ffffff;
+    --todoist-button-background-color: #db4c3f;
+    --todoist-button-hover-color: #e0665a;
+    --obsidian-button-background-color: #7f62f5;
+    --obsidian-button-hover-color: #8d79f7;
+    --button-text-color: #ffffff;
+}
+
     body {
-      font-family: Arial, sans-serif;
-      margin: 16px;
-      width: 300px;
+        margin: 16px;
+        width: 300px;
+        background-color: var(--background-color-light);
+        color: var(--text-color-light);
     }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            background-color: var(--background-color-dark);
+            color: var(--text-color-dark);
+        }
+    }
+
+    img {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 8px;
+    }
+
+    .service {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
     button {
-      background-color: #db4c3f;
-      border: none;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
-      padding: 8px 16px;
-      text-align: center;
-      text-decoration: none;
-      width: 100%;
+        border: none;
+        border-radius: 3px;
+        color: var(--button-text-color);
+        cursor: pointer;
+        padding: 8px 12px;
+        font-size: 14px;
+        margin-right: 8px;
+        width: 100%;
+    }
+    
+    .todoist button {
+        background-color: var(--todoist-button-background-color);
+    }
+
+    .todoist button:hover {
+        background-color: var(--todoist-button-hover-color);
+    }
+
+    .obsidian button {
+        background-color: var(--obsidian-button-background-color);
+    }
+
+    .obsidian button:hover {
+        background-color: var(--obsidian-button-hover-color);
     }
   </style>
 </head>
 <body>
-  <h1>Todoist Task Adder</h1>
-
-  <div id="signIn">
-    <p>Sign in to Todoist to start adding tasks.</p>
+  <div id="signIn" class="service todoist">
     <button id="signInButton">Sign in with Todoist</button>
   </div>
 
-  <div id="signedIn" style="display:none;">
-    <p>You are signed in. Press Ctrl+Shift+A to add a task.</p>
-    <button id="signOutButton">Sign out</button>
+  <div id="signedIn" style="display:none;" class="service todoist">
+    <button id="signOutButton">Sign out of Todoist</button>
   </div>
   
+  <div class="service obsidian">
+      <button>Configure Obsidian</button>
+  </div>
 </body>
 </html>
 
