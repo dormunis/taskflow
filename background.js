@@ -10,7 +10,7 @@ chrome.commands.onCommand.addListener(async (command) => {
             });
         }
     } else if (command === "add-obsidian-reference") {
-        console.log("add-obsidian-reference");
+        createNewObsidianNote();
     } else {
         console.log("unknown command");
     }
