@@ -1,0 +1,129 @@
+:root {
+  --background-color-light: #ffffff;
+  --background-color-dark: #1a1a1a;
+  --text-color-light: #000000;
+  --text-color-dark: #ffffff;
+  --todoist-button-background-color: #db4c3f;
+  --todoist-button-hover-color: #e0665a;
+  --obsidian-button-background-color: #7f62f5;
+  --obsidian-button-hover-color: #8d79f7;
+  --button-text-color: #ffffff;
+}
+
+body {
+  margin: 16px;
+  width: 300px;
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+  }
+}
+
+.service {
+  margin-bottom: 16px;
+  background-color: hsl(252, 9%, 14%);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.todoist button {
+  background-color: var(--todoist-button-background-color);
+}
+
+.todoist button:hover {
+  background-color: var(--todoist-button-hover-color);
+}
+
+.obsidian button {
+  background-color: var(--obsidian-button-background-color);
+}
+
+.obsidian button:hover {
+  background-color: var(--obsidian-button-hover-color);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+button {
+  border: none;
+  border-radius: 3px;
+  color: var(--button-text-color);
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 14px;
+  margin-right: 8px;
+  width: 100%;
+}
+
+#obsidianConfig {
+  margin-top: 16px;
+  border-radius: 5px;
+}
+
+#obsidianInputBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#obsidianInputContainer {
+  display: flex;
+  align-items: center;
+  background-color: hsl(252, 6%, 20%);
+  padding-bottom: 10px;
+  border-radius: 5px;
+}
+
+#obsidianInputContainer input[type="text"] {
+  flex: 4;
+  height: 30px;
+}
+
+#obsidianSaveButton {
+  flex: 1;
+  height: 35px;
+}
+
+#obsidianInputContainer button {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#obsidianHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#obsidianHeader h1 {
+  margin: 0;
+  /* font-size: 18px; */
+  /* font-weight: normal; */
+}
+
+#obsidianIcon {
+    /* height: 1.2em; */
+    /* width: 1.2em; */
+    float: right;
+}
+
+/* #obsidianHeader img { */
+/*   height: 18px; */
+/*   margin-right: 5px; */
+/* } */
+/**/

@@ -7,115 +7,7 @@
   <script src="todoist.js" defer></script>
   <script src="obsidian.js" defer></script>
   <script src="../config.js"></script>
-  <style>
-:root {
-    --background-color-light: #ffffff;
-    --background-color-dark: #1a1a1a;
-    --text-color-light: #000000;
-    --text-color-dark: #ffffff;
-    --todoist-button-background-color: #db4c3f;
-    --todoist-button-hover-color: #e0665a;
-    --obsidian-button-background-color: #7f62f5;
-    --obsidian-button-hover-color: #8d79f7;
-    --button-text-color: #ffffff;
-}
-
-    body {
-        margin: 16px;
-        width: 300px;
-        background-color: var(--background-color-light);
-        color: var(--text-color-light);
-    }
-
-    @media (prefers-color-scheme: dark) {
-        body {
-            background-color: var(--background-color-dark);
-            color: var(--text-color-dark);
-        }
-    }
-
-    .service {
-        margin-bottom: 16px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 8px;
-    }
-
-    input[type="file"] {
-        display: none;
-    }
-
-    button {
-        border: none;
-        border-radius: 3px;
-        color: var(--button-text-color);
-        cursor: pointer;
-        padding: 8px 12px;
-        font-size: 14px;
-        margin-right: 8px;
-        width: 100%;
-    }
-
-    #obsidianConfig {
-        background-color: hsl(252, 9%, 14%);
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    #obsidianInputBox {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-    }
-
-    #obsidianInputContainer {
-        display: flex;
-        align-items: center;
-        background-color: hsl(252, 6%, 20%);
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    #obsidianInputContainer input[type="text"] {
-        flex: 4;
-        height: 30px;
-    }
-
-    #obsidianSaveButton {
-        flex: 1;
-        height: 35px;
-    }
-
-    #obsidianInputContainer button {
-        display: inline-block;
-        margin-left: 5px;
-    }
-
-    #todoistConfig{
-        background-color: hsl(7, 28%, 22%);
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .todoist button {
-        background-color: var(--todoist-button-background-color);
-    }
-
-    .todoist button:hover {
-        background-color: var(--todoist-button-hover-color);
-    }
-
-    .obsidian button {
-        background-color: var(--obsidian-button-background-color);
-    }
-
-    .obsidian button:hover {
-        background-color: var(--obsidian-button-hover-color);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="todoistConfig" class="service todoist">
@@ -123,15 +15,20 @@
         <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
     </div>
 
-  <div id="obsidianConfig" class="service obsidian">
-      <button id="obsidianEnableButton">Enable Obsidian</button>
-      <div id="obsidianInputBox" style="display: none;">
-          <div id="obsidianInputContainer">
-              <input type="text" placeholder="Enter vault name (optional)">
-              <button id="obsidianSaveButton">Save</button>
-          </div>
-      </div>
-  </div>
+    <div id="obsidianConfig" class="service obsidian">
+        <div id="obsidianInputBox" style="display: none;">
+            <div id="obsidianHeader">
+                <h1>Obsidian Preferences</h1>
+                <img id="obsidianIcon" src="../res/obsidian.svg">
+            </div>
+            <div id="obsidianInputContainer">
+                <input type="text" placeholder="Enter vault name (optional)">
+                <button id="obsidianSaveButton">Save</button>
+            </div>
+        </div>
+        <button id="obsidianEnableButton">Enable Obsidian</button>
+    </div>
+
 </body>
 </html>
 
