@@ -5,16 +5,21 @@
     "manifest_version": 3,
     "permissions": [
         "activeTab",
-        "notifications",
+        "scripting",
         "storage",
-        "webRequest"
+        "identity",
+        "notifications"
     ],
-    "background": {
-        "service_worker": "background.js"
+    "icons": {
+        "16": "res/cog-16.png",
+        "48": "res/cog-48.png",
+        "128": "res/cog-128.png"
     },
     "action": {
-        "default_title": "Productivity utilties",
         "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
     },
     "commands": {
         "add-todoist-task": {
@@ -22,14 +27,20 @@
                 "default": "Ctrl+Shift+T",
                 "mac": "MacCtrl+Shift+T"
             },
-            "description": "Add a task to Todoist with the current webpage"
+            "description": "Add Todoist task"
         },
         "add-obsidian-reference": {
             "suggested_key": {
                 "default": "Ctrl+Shift+R",
                 "mac": "MacCtrl+Shift+R"
             },
-            "description": "Add a reference note to Obsidian based on the current webpage"
+            "description": "Add Obsidian reference"
         }
+    },
+    "oauth2": {
+        "client_id": "7b68b822195f4e5d91a611d83a2d1cc5",
+        "scopes": [
+            "data:read_write"
+        ]
     }
 }

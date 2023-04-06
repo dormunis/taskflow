@@ -1,8 +1,43 @@
-<html>
-    <head>
-        <title>Popup</title>
-    </head>
-    <body>
-        <h1>Popup</h1>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todoist Task Adder</title>
+  <script src="popup.js" defer></script>
+  <script src="config.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 16px;
+      width: 300px;
+    }
+    button {
+      background-color: #db4c3f;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Todoist Task Adder</h1>
+
+  <div id="signIn">
+    <p>Sign in to Todoist to start adding tasks.</p>
+    <button id="signInButton">Sign in with Todoist</button>
+  </div>
+
+  <div id="signedIn" style="display:none;">
+    <p>You are signed in. Press Ctrl+Shift+A to add a task.</p>
+    <button id="signOutButton">Sign out</button>
+  </div>
+  
+</body>
 </html>
+
