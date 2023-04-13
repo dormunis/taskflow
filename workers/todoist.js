@@ -20,10 +20,26 @@ async function addTask(token, title, url) {
     });
 
     if (response.ok) {
-        showNotificationTodoist("Todoist", "Task added successfully!");
+        await showTodoistAddedTaskNotification(response);
     } else {
         showNotificationTodoist("Todoist", "Failed to add task.");
     }
+}
+
+async function showTodoistAddedTaskNotification(response) {
+    let responseBody = await response.json()
+    const taskId = responseBody['id'];
+    const todoistUrl = `todoist://task?id=${taskId}`;
+    showNotificationTodoist(
+        "Todoist",
+        `Task ${responseBody['id']} added successfully!`,
+        taskId
+    );
+    chrome.notifications.onClicked.addListener(function(notifId) {
+        if (notifId == taskId) {
+            chrome.tabs.create({ url: todoistUrl });
+        }
+    });
 }
 
 function getActiveTabInfo(callback) {
@@ -58,8 +74,8 @@ async function authenticate() {
     });
 }
 
-function showNotificationTodoist(title, message) {
-    chrome.notifications.create(null, {
+function showNotificationTodoist(title, message, notificationId = null) {
+    chrome.notifications.create(notificationId, {
         type: "basic",
         iconUrl: "res/todoist-128.png",
         title: title,
