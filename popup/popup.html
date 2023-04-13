@@ -10,22 +10,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- TODO: create a configuration div like obsidian and add the random article to it -->
     <!-- TODO: add daily init config -->
-    <div id="todoistConfig" class="service todoist">
-        <button id="signInButton">Sign in with Todoist</button>
-        <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
+    <div class="service todoist">
+        <div class="plugin-header-container"> 
+            <h1>Todoist</h1>
+            <img src="../res/todoist.svg" class="plugin-icon"> 
+        </div>
+        <div id="obsidianInputContainer">
+            <button id="signInButton">Sign in with Todoist</button>
+            <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
+        </div>
     </div>
 
-    <div id="obsidianConfig" class="service obsidian">
-        <div id="obsidianInputBox" style="display: none;">
-            <div id="obsidianHeader">
-                <h1>Obsidian Preferences</h1>
-                <img id="obsidianIcon" src="../res/obsidian.svg">
+    <div class="service obsidian">
+        <div class="plugin" id="obsidianInputBox"> <!-- TODO: make generic -->
+            <div class="plugin-header-container"> 
+                <h1>Obsidian</h1>
+                <img src="../res/obsidian.svg" class="plugin-icon"> 
             </div>
-            <div id="obsidianInputContainer">
+            <div class="plugin-config" id="obsidianInputContainer">
                 <input type="text" placeholder="Enter vault name (optional)">
-                <button id="obsidianSaveButton">Save</button>
+                <button class="plugin-save-button">Save</button>
             </div>
         </div>
         <button id="obsidianEnableButton">Enable Obsidian</button>

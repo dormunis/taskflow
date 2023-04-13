@@ -29,6 +29,7 @@ body {
   background-color: hsl(252, 9%, 14%);
   padding: 10px;
   border-radius: 5px;
+  margin-top: 16px;
 }
 
 .todoist button {
@@ -67,12 +68,7 @@ button {
   width: 100%;
 }
 
-#obsidianConfig {
-  margin-top: 16px;
-  border-radius: 5px;
-}
-
-#obsidianInputBox {
+.plugin {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,50 +76,39 @@ button {
   margin-bottom: 10px;
 }
 
-#obsidianInputContainer {
+/* TODO: make this entire config pane better and generic */
+.plugin-config {
   display: flex;
   align-items: center;
-  background-color: hsl(252, 6%, 20%);
-  padding-bottom: 10px;
+  background-color: hsl(252, 6%, 20%); /* TODO: support todoist colors */
+  padding: 10px;
   border-radius: 5px;
 }
 
-#obsidianInputContainer input[type="text"] {
+.plugin-config input[type="text"] {
   flex: 4;
   height: 30px;
 }
 
-#obsidianSaveButton {
+.plugin-save-button {
+  display: inline-block;
+  margin-left: 5px;
   flex: 1;
   height: 35px;
 }
 
-#obsidianInputContainer button {
-  display: inline-block;
-  margin-left: 5px;
-}
-
-#obsidianHeader {
+.plugin-header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-#obsidianHeader h1 {
+.plugin-header-container h1 {
   margin: 0;
-  /* font-size: 18px; */
-  /* font-weight: normal; */
 }
 
-#obsidianIcon {
-    /* height: 1.2em; */
-    /* width: 1.2em; */
+.plugin-icon {
     float: right;
+    height: 32px;
 }
-
-/* #obsidianHeader img { */
-/*   height: 18px; */
-/*   margin-right: 5px; */
-/* } */
-/**/
