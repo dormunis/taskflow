@@ -1,10 +1,56 @@
-async function getAccessToken() {
-    const token = await new Promise((resolve) => {
-        chrome.storage.sync.get("todoist_token", (data) => {
-            resolve(data.todoist_token);
-        });
+async function authenticate() {
+    console.log('popup');
+    const clientId = chrome.runtime.getManifest().oauth2.client_id;
+    const clientSecret = config.clientSecret;
+    const scopes = chrome.runtime.getManifest().oauth2.scopes.join(",");
+    const redirectUri = chrome.identity.getRedirectURL("provider_cb");
+    const authUrl = `https://todoist.com/oauth/authorize?client_id=${clientId}&scope=${scopes}&state=123&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}`;
+
+    return new Promise(async (resolve) => {
+        chrome.identity.launchWebAuthFlow(
+            {
+                url: authUrl,
+                interactive: true,
+            },
+            async (redirectUrl) => {
+                if (chrome.runtime.lastError) {
+                    console.error(chrome.runtime.lastError.message);
+                    resolve(null);
+                } else {
+                    const authCode = new URL(redirectUrl).searchParams.get("code");
+                    const tokenResponse = await fetch("https://todoist.com/oauth/access_token", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                        body: new URLSearchParams({
+                            client_id: clientId,
+                            client_secret: clientSecret,
+                            code: authCode,
+                            redirect_uri: redirectUri,
+                            grant_type: "authorization_code",
+                        }),
+                    });
+
+                    if (tokenResponse.ok) {
+                        const tokenData = await tokenResponse.json();
+                        resolve(tokenData.access_token);
+                    } else {
+                        console.error("Failed to obtain access token");
+                        resolve(null);
+                    }
+                }
+            }
+        );
     });
-    return token;
+}
+
+async function getAccessToken() {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get("todoist_token", (data) => {
+      resolve(data.todoist_token);
+    });
+  });
 }
 
 async function addTask(token, title, url) {
@@ -51,28 +97,6 @@ function getActiveTabInfo(callback) {
     });
 }
 
-async function authenticate() {
-    const authUrl = `https://todoist.com/oauth/authorize?client_id=${chrome.runtime.getManifest().oauth2.client_id}&scope=${chrome.runtime.getManifest().oauth2.scopes.join(
-        ","
-    )}&state=123&response_type=token`;
-
-    return new Promise((resolve) => {
-        chrome.identity.launchWebAuthFlow(
-            {
-                url: authUrl,
-                interactive: true,
-            },
-            (redirectUrl) => {
-                const token = new URL(redirectUrl).hash
-                    .substring(1)
-                    .split("&")
-                    .map((param) => param.split("="))
-                    .find(([key]) => key === "access_token")[1];
-                resolve(token);
-            }
-        );
-    });
-}
 
 function showNotificationTodoist(title, message, notificationId = null) {
     chrome.notifications.create(notificationId, {
