@@ -48,6 +48,22 @@ body {
   background-color: var(--obsidian-button-hover-color);
 }
 
+.active, .collapsible:hover {
+    background-color: #ccc;
+}
+
+.collapsible:after {
+    content: '\02795';
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2796";
+}
+
 label {
   display: block;
   margin-bottom: 8px;
@@ -78,11 +94,15 @@ button {
 
 /* TODO: make this entire config pane better and generic */
 .plugin-config {
-  display: flex;
   align-items: center;
   background-color: hsl(252, 6%, 20%); /* TODO: support todoist colors */
   padding: 10px;
   border-radius: 5px;
+  padding: 0 18px;
+  display: float;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
 }
 
 .plugin-config input[type="text"] {
@@ -102,6 +122,7 @@ button {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .plugin-header-container h1 {

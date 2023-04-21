@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>taskflow</title>
-  <script src="todoist.js" defer></script>
-  <script src="obsidian.js" defer></script>
-  <script src="../config.js"></script>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>taskflow</title>
+    <script src="todoist.js" defer></script>
+    <script src="obsidian.js" defer></script>
+    <script src="main.js" defer></script>
+    <script src="../config.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- TODO: add daily init config -->
     <div class="service todoist">
-        <div class="plugin-header-container"> 
+        <div class="plugin-header-container collapsible">
             <h1>Todoist</h1>
-            <img src="../res/todoist.svg" class="plugin-icon"> 
+            <img src="../res/todoist.svg" class="plugin-icon">
         </div>
-        <div id="obsidianInputContainer">
+        <div id="obsidianInputContainer" class="plugin-config">
             <button id="signInButton">Sign in with Todoist</button>
             <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
         </div>
@@ -24,18 +27,18 @@
 
     <div class="service obsidian">
         <div class="plugin" id="obsidianInputBox"> <!-- TODO: make generic -->
-            <div class="plugin-header-container"> 
+            <div class="plugin-header-container collapsible">
                 <h1>Obsidian</h1>
-                <img src="../res/obsidian.svg" class="plugin-icon"> 
+                <img src="../res/obsidian.svg" class="plugin-icon">
             </div>
             <div class="plugin-config" id="obsidianInputContainer">
                 <input type="text" placeholder="Enter vault name (optional)">
                 <button class="plugin-save-button">Save</button>
+                <button id="obsidianEnableButton">Enable Obsidian</button>
             </div>
         </div>
-        <button id="obsidianEnableButton">Enable Obsidian</button>
     </div>
 
 </body>
-</html>
 
+</html>
