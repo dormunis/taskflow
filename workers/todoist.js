@@ -1,5 +1,4 @@
 async function authenticate() {
-    console.log('popup');
     const clientId = chrome.runtime.getManifest().oauth2.client_id;
     const clientSecret = config.clientSecret;
     const scopes = chrome.runtime.getManifest().oauth2.scopes.join(",");
@@ -114,7 +113,6 @@ function openRandomTodoistArticle(token) {
     getTasksWithLinks(function(tasks) {
         var randomTask = chooseRandomTask(tasks);
         var extractedUrl = extractUrlFromTask(randomTask);
-        console.log(extractedUrl);
         chrome.tabs.create({ url: extractedUrl });
     }, token);
 }
@@ -133,11 +131,11 @@ async function getTasksWithLinks(callback, token) {
             const tasks = await response.json();
             callback(tasks);
         } else {
-            console.log('Error retrieving tasks:', response);
+            console.error('Error retrieving tasks:', response);
             showNotificationTodoist("Error", "Error retrieving tasks");
         }
     } catch (error) {
-        console.log(`Error handling response: ${error}`);
+        console.error(`Error handling response: ${error}`);
         showNotificationTodoist("Error", "Error handling response");
     }
 }

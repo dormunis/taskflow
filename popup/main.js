@@ -1,16 +1,13 @@
-var coll = document.getElementsByClassName("collapsible");
-var i;
+var collapsibles = document.getElementsByClassName("collapsible");
 
-for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        console.log(content.scrollHeight);
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
+for (let i = 0; i < collapsibles.length; i++) {
+    collapsibles[i].addEventListener("click", function() {
+        let isEnabled = document.querySelector(".collapsible .checkbox-wrapper > input").checked;
+        let content = this.nextElementSibling;
+        if (!content.style.maxHeight && isEnabled) {
+            content.style.maxHeight = "300em";
         } else {
-            content.style.maxHeight = "300px";
-            // content.style.maxHeight = scrollHeight + "px";
+            content.style.maxHeight = null;
         }
     });
 }

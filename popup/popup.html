@@ -8,34 +8,44 @@
     <script src="todoist.js" defer></script>
     <script src="obsidian.js" defer></script>
     <script src="main.js" defer></script>
-    <script src="../config.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="toggle-btn.css">
 </head>
 
 <body>
-    <!-- TODO: add daily init config -->
     <div class="service todoist">
         <div class="plugin-header-container collapsible">
-            <h1>Todoist</h1>
-            <img src="../res/todoist.svg" class="plugin-icon">
+            <div class="header-column">
+                <img src="../res/todoist.svg" class="plugin-icon">
+            </div>
+            <div class="header-title header-column">
+                <h1>Todoist</h1>
+            </div>
+            <div class="checkbox-wrapper header-column">
+                <input type="checkbox" id="todoistSwitch" /><label for="todoistSwitch"></label>
+            </div>
         </div>
-        <div id="obsidianInputContainer" class="plugin-config">
-            <button id="signInButton">Sign in with Todoist</button>
-            <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
+        <div class="plugin-config-container">
+            <div class="plugin-config">
+                <button id="signInButton">Sign in with Todoist</button>
+                <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
+            </div>
         </div>
     </div>
 
     <div class="service obsidian">
-        <div class="plugin" id="obsidianInputBox"> <!-- TODO: make generic -->
-            <div class="plugin-header-container collapsible">
-                <h1>Obsidian</h1>
+        <div class="plugin-header-container collapsible">
+            <div class="header-column">
                 <img src="../res/obsidian.svg" class="plugin-icon">
             </div>
-            <div class="plugin-config" id="obsidianInputContainer">
-                <input type="text" placeholder="Enter vault name (optional)">
-                <button class="plugin-save-button">Save</button>
-                <button id="obsidianEnableButton">Enable Obsidian</button>
+            <div class="header-title header-column">
+                <h1>Obsidian</h1>
             </div>
+            <div class="checkbox-wrapper header-column">
+                <input type="checkbox" id="obsidianSwitch" /><label for="obsidianSwitch"></label>
+            </div>
+        </div>
+        <div class="plugin-config-container">
         </div>
     </div>
 

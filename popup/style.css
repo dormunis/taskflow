@@ -1,135 +1,121 @@
 :root {
-  --background-color-light: #ffffff;
-  --background-color-dark: #1a1a1a;
-  --text-color-light: #000000;
-  --text-color-dark: #ffffff;
-  --todoist-button-background-color: #db4c3f;
-  --todoist-button-hover-color: #e0665a;
-  --obsidian-button-background-color: #7f62f5;
-  --obsidian-button-hover-color: #8d79f7;
-  --button-text-color: #ffffff;
+    --background-color-light: #ffffff;
+    --background-color-dark: #1a1a1a;
+    --text-color-light: #000000;
+    --text-color-dark: #ffffff;
+    --service-background-color: #222027;
+    --todoist-button-background-color: #db4c3f;
+    --todoist-button-hover-color: #e0665a;
+    --todoist-background-color: #222027;
+    --obsidian-button-background-color: #7f62f5;
+    --obsidian-button-hover-color: #8d79f7;
+    --obsidian-background-color: #313036;
+    --button-text-color: #ffffff;
 }
 
 body {
-  margin: 16px;
-  width: 300px;
-  background-color: var(--background-color-light);
-  color: var(--text-color-light);
+    width: 28em;
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--background-color-dark);
-    color: var(--text-color-dark);
-  }
+    body {
+        background-color: var(--background-color-dark);
+        color: var(--text-color-dark);
+    }
 }
 
 .service {
-  margin-bottom: 16px;
-  background-color: hsl(252, 9%, 14%);
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 16px;
+    background-color: var(--service-background-color);
+    padding: 0.2em 1em;
+    margin: 1em 0em;
+    border-radius: 0.5em;
+}
+
+.service.todoist .plugin-config {
+    background-color: var(--todoist-background-color);
+}
+
+.service.obsidian .plugin-config {
+    background-color: var(--obsidian-background-color);
 }
 
 .todoist button {
-  background-color: var(--todoist-button-background-color);
+    background-color: var(--todoist-button-background-color);
 }
 
 .todoist button:hover {
-  background-color: var(--todoist-button-hover-color);
+    background-color: var(--todoist-button-hover-color);
 }
 
 .obsidian button {
-  background-color: var(--obsidian-button-background-color);
+    background-color: var(--obsidian-button-background-color);
 }
 
 .obsidian button:hover {
-  background-color: var(--obsidian-button-hover-color);
-}
-
-.active, .collapsible:hover {
-    background-color: #ccc;
-}
-
-.collapsible:after {
-    content: '\02795';
-    font-size: 13px;
-    color: white;
-    float: right;
-    margin-left: 5px;
-}
-
-.active:after {
-    content: "\2796";
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-input[type="file"] {
-  display: none;
+    background-color: var(--obsidian-button-hover-color);
 }
 
 button {
-  border: none;
-  border-radius: 3px;
-  color: var(--button-text-color);
-  cursor: pointer;
-  padding: 8px 12px;
-  font-size: 14px;
-  margin-right: 8px;
-  width: 100%;
+    border: none;
+    border-radius: 0.5em;
+    color: var(--button-text-color);
+    cursor: pointer;
+    padding: 0.5em 0.5em;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    width: 100%;
 }
 
 .plugin {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    display: block;
+    justify-content: center;
+    align-items: center;
 }
 
-/* TODO: make this entire config pane better and generic */
+.plugin-config-container {
+    align-items: center;
+    border-radius: 0.5em;
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+}
+
 .plugin-config {
-  align-items: center;
-  background-color: hsl(252, 6%, 20%); /* TODO: support todoist colors */
-  padding: 10px;
-  border-radius: 5px;
-  padding: 0 18px;
-  display: float;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.2s ease-out;
-}
-
-.plugin-config input[type="text"] {
-  flex: 4;
-  height: 30px;
-}
-
-.plugin-save-button {
-  display: inline-block;
-  margin-left: 5px;
-  flex: 1;
-  height: 35px;
+    margin-top: 1em;
 }
 
 .plugin-header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  cursor: pointer;
+    display: flex;
+    cursor: pointer;
+    padding: 1em 0;
 }
 
-.plugin-header-container h1 {
-  margin: 0;
+.plugin-header-container:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.header-column {
+    display: flex;
+    float: left;
+    margin: auto;
 }
 
 .plugin-icon {
-    float: right;
     height: 32px;
+    width: 32px;
+    margin-right: 1em;
+}
+
+.header-title {
+    width: 100%;
+}
+
+.header-title h1 {
+    margin: 0;
+    padding: 0;
 }
