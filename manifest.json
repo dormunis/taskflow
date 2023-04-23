@@ -22,21 +22,21 @@
         "service_worker": "background.js"
     },
     "commands": {
-        "add-todoist-task": {
+        "todoist_add-task": {
             "suggested_key": {
                 "default": "Ctrl+Shift+T",
                 "mac": "MacCtrl+Shift+T"
             },
             "description": "Add Todoist task"
         },
-        "open-random-todoist-article": {
+        "todoist_random-article": {
             "suggested_key": {
                 "default": "Ctrl+Shift+A",
                 "mac": "MacCtrl+Shift+A"
             },
             "description": "Open random Todoist article"
         },
-        "add-obsidian-reference": {
+        "obsidian_add-reference": {
             "suggested_key": {
                 "default": "Ctrl+Shift+R",
                 "mac": "MacCtrl+Shift+R"

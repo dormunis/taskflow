@@ -3,6 +3,10 @@
     --background-color-dark: #1a1a1a;
     --text-color-light: #000000;
     --text-color-dark: #ffffff;
+    --hints-background-color-light: #e5e5e5;
+    --hints-background-color-dark: #0d3b66;
+    --hints-text-color-light: #333;
+    --hints-font-color-dark: #f2f2f2;
     --service-background-color: #222027;
     --todoist-button-background-color: #db4c3f;
     --todoist-button-hover-color: #e0665a;
@@ -14,7 +18,7 @@
 }
 
 body {
-    width: 28em;
+    width: 35em;
     background-color: var(--background-color-light);
     color: var(--text-color-light);
 }
@@ -99,6 +103,10 @@ button {
     clear: both;
 }
 
+.plugin-toggle label {
+    --size: 50px;
+}
+
 .header-column {
     display: flex;
     float: left;
@@ -118,4 +126,47 @@ button {
 .header-title h1 {
     margin: 0;
     padding: 0;
+}
+
+.keybindings {
+    margin-top: 0;
+    margin-bottom: 1em;
+    padding: 0.3em;
+    border: 1px solid #777;
+    border-radius: 0.5em;
+    background-image: linear-gradient(to right, #222 0%, #222 33%, var(--hints-background-color-light) 33%, var(--hints-background-color-light) 100%);
+    color: var(--hints-text-color-light);
+    opacity: 0.5;
+}
+
+@media (prefers-color-scheme: dark) {
+    .keybindings {
+        background-image: linear-gradient(to right, #222 0%, #222 33%, var(--hints-background-color-dark) 33%, var(--hints-background-color-dark) 100%);
+        color: var(--hints-font-color-dark);
+    }
+}
+
+.keybinding-line {
+    display: flex;
+    font-size: 1em;
+}
+
+.keybinding-key-combination-wrapper {
+    flex: 1;
+}
+
+.keybinding-description-wrapper {
+    flex: 2;
+}
+
+.keybinding-key-combination {
+    display: flex;
+    font-weight: bold;
+    margin-right: 1em;
+    padding-left: 1em;
+}
+
+.keybinding-description {
+    display: flex;
+    margin-left: 2em;
 }

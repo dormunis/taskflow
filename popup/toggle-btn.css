@@ -5,11 +5,11 @@
 }
 
 .checkbox-wrapper label {
-    --size: 50px;
+    --default-size: 30px;
 
     cursor: pointer;
-    width: var(--size);
-    height: calc(var(--size) / 2);
+    width: var(--size, var(--default-size));
+    height: calc(var(--size, var(--default-size)) / 2);
     background: grey;
     display: block;
     border-radius: 100px;

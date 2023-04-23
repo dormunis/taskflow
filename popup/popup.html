@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <title>taskflow</title>
     <script src="todoist.js" defer></script>
     <script src="obsidian.js" defer></script>
@@ -21,14 +20,14 @@
             <div class="header-title header-column">
                 <h1>Todoist</h1>
             </div>
-            <div class="checkbox-wrapper header-column">
-                <input type="checkbox" id="todoistSwitch" /><label for="todoistSwitch"></label>
-            </div>
         </div>
         <div class="plugin-config-container">
             <div class="plugin-config">
-                <button id="signInButton">Sign in with Todoist</button>
-                <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
+                <div class="keybindings"></div>
+                <div class="sign-in">
+                    <button id="signInButton">Sign in with Todoist</button>
+                    <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
+                </div>
             </div>
         </div>
     </div>
@@ -41,11 +40,11 @@
             <div class="header-title header-column">
                 <h1>Obsidian</h1>
             </div>
-            <div class="checkbox-wrapper header-column">
-                <input type="checkbox" id="obsidianSwitch" /><label for="obsidianSwitch"></label>
-            </div>
         </div>
         <div class="plugin-config-container">
+            <div class="plugin-config">
+                <div class="keybindings"></div>
+            </div>
         </div>
     </div>
 

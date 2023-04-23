@@ -1,3 +1,4 @@
+const todoist = document.querySelector('.todoist');
 const todoistSwitch = document.getElementById("todoistSwitch");
 
 async function getAccessToken() {
@@ -22,6 +23,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         var isEnabled = data.todoist_enabled !== undefined ? data.todoist_enabled : true;
         todoistSwitch.checked = isEnabled;
     });
+
+    addKeybindings(todoist, 'todoist');
 });
 
 document.getElementById("signInButton").addEventListener("click", async () => {
