@@ -10,10 +10,10 @@
     --service-background-color: #222027;
     --todoist-button-background-color: #db4c3f;
     --todoist-button-hover-color: #e0665a;
-    --todoist-background-color: #222027;
+    --todoist-hover-color: #422c2a;
     --obsidian-button-background-color: #7f62f5;
     --obsidian-button-hover-color: #8d79f7;
-    --obsidian-background-color: #313036;
+    --obsidian-hover-color: #2e2a3b;
     --button-text-color: #ffffff;
 }
 
@@ -35,14 +35,15 @@ body {
     padding: 0.2em 1em;
     margin: 1em 0em;
     border-radius: 0.5em;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.service.todoist .plugin-config {
-    background-color: var(--todoist-background-color);
+.todoist:hover {
+    background-color: var(--todoist-hover-color);
 }
 
-.service.obsidian .plugin-config {
-    background-color: var(--obsidian-background-color);
+.obsidian:hover {
+    background-color: var(--obsidian-hover-color);
 }
 
 .todoist button {
