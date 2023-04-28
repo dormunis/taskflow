@@ -9,14 +9,14 @@ const obsidianSaveButton = obsidianInputBox.querySelector('button');
 document.addEventListener("DOMContentLoaded", async () => {
     // let obsidianEnabled = false;
     // let obsidianVaultName = '';
-    chrome.storage.sync.get(['obsidianEnabled', 'obsidianVaultName'], (result) => {
-        if (result.obsidianEnabled) {
-            obsidianEnabled = true;
-            obsidianVaultName = result.obsidianVaultName || '';
+    // chrome.storage.sync.get(['obsidianEnabled', 'obsidianVaultName'], (result) => {
+        // if (result.obsidianEnabled) {
+            // obsidianEnabled = true;
+            // obsidianVaultName = result.obsidianVaultName || '';
             // obsidianEnableButton.textContent = 'Disable Obsidian';
             // obsidianInput.value = obsidianVaultName;
-        }
-    });
+        // }
+    // });
     addKeybindings(obsidian, 'obsidian');
 });
 
@@ -46,4 +46,3 @@ function saveObsidianVaultName() {
 //   }
 // });
 // obsidianSaveButton.addEventListener('click', saveObsidianVaultName);
-

@@ -186,3 +186,7 @@ function extractUrlFromTask(task) {
         return null;
     }
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = authenticate;
+}

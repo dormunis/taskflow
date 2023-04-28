@@ -1,5 +1,4 @@
 const todoist = document.querySelector('.todoist');
-const todoistSwitch = document.getElementById("todoistSwitch");
 
 async function getAccessToken() {
     return new Promise((resolve) => {
@@ -18,11 +17,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("signInButton").style.display = "block";
         document.getElementById("signOutButton").style.display = "none";
     }
-
-    chrome.storage.sync.get('todoist_enabled', function(data) {
-        var isEnabled = data.todoist_enabled !== undefined ? data.todoist_enabled : true;
-        todoistSwitch.checked = isEnabled;
-    });
 
     addKeybindings(todoist, 'todoist');
 });
@@ -47,8 +41,48 @@ document.getElementById("signOutButton").addEventListener("click", () => {
     });
 });
 
-todoistSwitch.addEventListener("click", async () => {
-    console.log(todoistSwitch.checked);
-    chrome.storage.sync.set({ todoist_enabled: todoistSwitch.checked }, () => { });
-});
+async function authenticate() {
+    const clientId = chrome.runtime.getManifest().oauth2.client_id;
+    const clientSecret = config.clientSecret;
+    const scopes = chrome.runtime.getManifest().oauth2.scopes.join(",");
+    const redirectUri = chrome.identity.getRedirectURL("provider_cb");
+    const authUrl = `https://todoist.com/oauth/authorize?client_id=${clientId}&scope=${scopes}&state=123&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}`;
 
+    return new Promise(async (resolve) => {
+        chrome.identity.launchWebAuthFlow(
+            {
+                url: authUrl,
+                interactive: true,
+            },
+            async (redirectUrl) => {
+                if (chrome.runtime.lastError) {
+                    console.error(chrome.runtime.lastError.message);
+                    resolve(null);
+                } else {
+                    const authCode = new URL(redirectUrl).searchParams.get("code");
+                    const tokenResponse = await fetch("https://todoist.com/oauth/access_token", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                        body: new URLSearchParams({
+                            client_id: clientId,
+                            client_secret: clientSecret,
+                            code: authCode,
+                            redirect_uri: redirectUri,
+                            grant_type: "authorization_code",
+                        }),
+                    });
+
+                    if (tokenResponse.ok) {
+                        const tokenData = await tokenResponse.json();
+                        resolve(tokenData.access_token);
+                    } else {
+                        console.error("Failed to obtain access token");
+                        resolve(null);
+                    }
+                }
+            }
+        );
+    });
+}

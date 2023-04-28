@@ -12,7 +12,6 @@ for (let i = 0; i < collapsibles.length; i++) {
 }
 
 function addKeybindings(element, extensionName) {
-    console.log(element, extensionName);
     const manifest = chrome.runtime.getManifest();
     const commands = manifest.commands;
 
