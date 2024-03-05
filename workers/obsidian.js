@@ -1,22 +1,78 @@
 function createNewObsidianNote() {
+  isObsidianEnabled(function(enabled) {
+    if (enabled) {
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        const currentTabId = tabs[0].id;
+        injectScriptToCollectTexts(currentTabId);
+      });
+    } else {
+      showNotificationObsidian("Error", "Obsidian disabled");
+    }
+  });
+}
+
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === "collectedHighlightedTexts") {
+    const highlightedTexts = message.texts;
+    getObsidianNoteContent(function(encodedContent) {
+      getObsidianVaultName().then(function(vaultName) {
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            const title = tabs[0].title;
+            var obsidianUrl = constructObsidianUrl(title, encodedContent, vaultName, highlightedTexts);
+            chrome.tabs.create({ url: obsidianUrl });
+        });
+      });
+    }, highlightedTexts);
+  }
+});
+
+function injectScriptToCollectTexts(tabId) {
+  chrome.scripting.executeScript({
+    target: {tabId: tabId},
+    function: () => {
+      const highlightedSpans = document.querySelectorAll('.taskflow-highlighted-text');
+      const highlightedTexts = Array.from(highlightedSpans).map(span => span.textContent);
+      chrome.runtime.sendMessage({action: "collectedHighlightedTexts", texts: highlightedTexts});
+    }
+  });
+}
+
+
+function markReference() {
     isObsidianEnabled(function(enabled) {
         if (enabled) {
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                getObsidianNoteContent(function(encodedContent) {
-                    getObsidianVaultName().then(function(vaultName) {
-                        var obsidianUrl = constructObsidianUrl(tabs, encodedContent, vaultName);
-                        chrome.tabs.create({ url: obsidianUrl });
-                    });
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    function: logSelectedText
                 });
             });
-
-        } else {
-            showNotificationObsidian("Error", "Obsidian disabled");
         }
     });
 }
 
-function getObsidianNoteContent(callback) {
+function logSelectedText() {
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+
+    const range = selection.getRangeAt(0);
+    const span = document.createElement('span');
+    span.style.backgroundColor = 'hsl(50, 100%, 80%)';
+    span.style.cursor = 'pointer';
+    span.classList.add('taskflow-highlighted-text');
+
+    span.addEventListener('click', function(event) {
+        const parent = this.parentNode;
+        while (this.firstChild) parent.insertBefore(this.firstChild, this);
+        parent.removeChild(this);
+        parent.normalize();
+    });
+
+    range.surroundContents(span);
+    selection.removeAllRanges();
+}
+
+function getObsidianNoteContent(callback, references) {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         var title = tabs[0].title;
         var url = tabs[0].url;
@@ -25,7 +81,13 @@ function getObsidianNoteContent(callback) {
         var timestamp = getTimestampString();
 
         // Construct the note content string
-        var content = `---\naliases: []\ntags: #reference\ntimestamp: ${timestamp}\n---\n\n# References\n[${title}](${url})`;
+        var content = `---\naliases: []\ntags: #reference\ntimestamp: ${timestamp}\n---\n`
+        if (references.length > 0) {
+            content += `## References\n`;
+            content += references.map(text => `> ${text}`).join('\n\n');
+            content += `\n`;
+        }
+        content += `\n---\n# Source\n- [${title}](${url})`;
         var encodedContent = encodeURIComponent(content);
         callback(encodedContent);
     });
@@ -51,8 +113,7 @@ function getObsidianVaultName() {
     });
 }
 
-function constructObsidianUrl(tabs, content, vaultName) {
-    var title = encodeURIComponent(tabs[0].title);
+function constructObsidianUrl(title, content, vaultName) {
     var obsidianUrl = `obsidian://new?name=${title}&content=${content}`;
     if (vaultName) {
         obsidianUrl += `&vault=${vaultName}`;

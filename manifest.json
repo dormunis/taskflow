@@ -42,6 +42,13 @@
                 "mac": "MacCtrl+Shift+R"
             },
             "description": "Add Obsidian reference"
+        },
+        "obsidian_mark-reference": {
+            "suggested_key": {
+                "default": "Ctrl+R",
+                "mac": "MacCtrl+R"
+            },
+            "description": "Mark Obsidian reference"
         }
     },
     "oauth2": {

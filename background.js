@@ -5,7 +5,6 @@ try {
 }
 
 chrome.commands.onCommand.addListener(async (command) => {
-    console.log(command);
     if (command === "todoist_add-task") {
         const token = await getAccessToken();
         if (token) {
@@ -40,6 +39,8 @@ chrome.commands.onCommand.addListener(async (command) => {
         }
     } else if (command === "obsidian_add-reference") {
         createNewObsidianNote();
+    } else if (command === "obsidian_mark-reference") {
+        markReference();
     } else {
         console.error("unknown command");
     }
