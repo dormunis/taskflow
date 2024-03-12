@@ -201,7 +201,7 @@ function getObsidianNoteContent(callback, references) {
                 content += `### REF ${idx + 1}: \n\n`;
                 content += `> "${highlightedText}"\n\n`;
                 content += comments.map(comment => `- ${comment}`).join('\n');
-                content += `- \n\n`;
+                content += `\n- \n\n`;
             });
         }
         content += `---\n# Source\n- [${title}](${url})`;
