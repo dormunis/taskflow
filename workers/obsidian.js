@@ -173,7 +173,14 @@ function logSelectedText() {
                 }
             });
 
-            commentBox.addEventListener('click', function(event) {
+            commentBox.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' && (!event.shiftKey || event.metaKey || event.ctrlKey)) {
+                    event.preventDefault();
+                    this.blur();
+                }
+            });
+
+            commentBox.addEventListener('click', function() {
                 this.style.opacity = '1';
                 this.readOnly = false;
                 this.focus();
