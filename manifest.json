@@ -1,6 +1,6 @@
 {
     "name": "taskflow",
-    "version": "0.2",
+    "version": "0.2.1",
     "description": "Productivity utilties for Toodist and Obsidian",
     "manifest_version": 3,
     "permissions": [

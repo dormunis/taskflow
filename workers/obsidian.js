@@ -204,13 +204,12 @@ function getObsidianNoteContent(callback, references) {
         content += `## Summary\n\n\n\n`;
         if (Object.keys(references).length > 0) {
             content += `---\n## References\n`;
-            Object.entries(references).forEach(([highlightedText, comments], idx) => {
-                content += `### REF ${idx + 1}: \n\n`;
-                content += `> "${highlightedText}"\n\n`;
-                if (comments) {
-                    content += comments.map(comment => `- ${comment}`).join('\n') + '\n';
+            Object.entries(references).forEach(([highlightedText, comments]) => {
+                content += ` - ${highlightedText}\n`;
+                if (comments.length > 0) {
+                    content += comments.map(comment => `   - ${comment}`).join('\n') + '\n';
                 }
-                content += `- \n\n`;
+                content += `\n\n`;
             });
         }
         content += `---\n# Source\n- [${title}](${url})`;
