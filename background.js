@@ -22,7 +22,7 @@ chrome.commands.onCommand.addListener(async (command) => {
                 }
             );
         }
-    } else if (command === "todoist_random-article") {
+    } else if (command === "todoist_random-article") { // removed from the manifest
         const token = await getAccessToken();
         if (token) {
             openRandomTodoistArticle(token);
@@ -41,6 +41,8 @@ chrome.commands.onCommand.addListener(async (command) => {
         createNewObsidianNote();
     } else if (command === "obsidian_mark-reference") {
         markReference();
+    } else if (command === "toggle-footnotes") {
+        toggleFootnotes();
     } else {
         console.error("unknown command");
     }
