@@ -1,54 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      charset="UTF-8"
+    />
     <title>taskflow</title>
     <script src="todoist.js" defer></script>
     <script src="obsidian.js" defer></script>
     <script src="main.js" defer></script>
     <script src="../config.js" defer></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="toggle-btn.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="toggle-btn.css" />
+  </head>
 
-<body>
+  <body>
     <div class="service todoist">
-        <div class="plugin-header-container collapsible">
-            <div class="header-column">
-                <img src="../res/todoist.svg" class="plugin-icon">
-            </div>
-            <div class="header-title header-column">
-                <h1>Todoist</h1>
-            </div>
+      <div class="plugin-header-container collapsible">
+        <div class="header-column">
+          <img src="../res/todoist.svg" class="plugin-icon" />
         </div>
-        <div class="plugin-config-container">
-            <div class="plugin-config">
-                <div class="keybindings"></div>
-                <div class="sign-in">
-                    <button id="signInButton">Sign in with Todoist</button>
-                    <button id="signOutButton" style="display:none;">Sign out of Todoist</button>
-                </div>
-            </div>
+        <div class="header-title header-column">
+          <h1>Todoist</h1>
         </div>
+      </div>
+      <div class="plugin-config-container">
+        <div class="plugin-config">
+          <div class="keybindings"></div>
+          <div class="sign-in">
+            <button id="signInButton">Sign in with Todoist</button>
+            <button id="signOutButton" style="display: none">
+              Sign out of Todoist
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="service obsidian">
-        <div class="plugin-header-container collapsible">
-            <div class="header-column">
-                <img src="../res/obsidian.svg" class="plugin-icon">
-            </div>
-            <div class="header-title header-column">
-                <h1>Obsidian</h1>
-            </div>
+      <div class="plugin-header-container collapsible">
+        <div class="header-column">
+          <img src="../res/obsidian.svg" class="plugin-icon" />
         </div>
-        <div class="plugin-config-container">
-            <div class="plugin-config">
-                <div class="keybindings"></div>
-            </div>
+        <div class="header-title header-column">
+          <h1>Obsidian</h1>
         </div>
+      </div>
+      <div class="plugin-config-container">
+        <div class="plugin-config">
+          <div class="keybindings"></div>
+        </div>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>

@@ -1,173 +1,185 @@
 :root {
-    --background-color-light: #ffffff;
-    --background-color-dark: #1a1a1a;
-    --text-color-light: #000000;
-    --text-color-dark: #ffffff;
-    --hints-background-color-light: #e5e5e5;
-    --hints-background-color-dark: #0d3b66;
-    --hints-text-color-light: #333;
-    --hints-font-color-dark: #f2f2f2;
-    --service-background-color: #222027;
-    --todoist-button-background-color: #db4c3f;
-    --todoist-button-hover-color: #e0665a;
-    --todoist-hover-color: #422c2a;
-    --obsidian-button-background-color: #7f62f5;
-    --obsidian-button-hover-color: #8d79f7;
-    --obsidian-hover-color: #2e2a3b;
-    --button-text-color: #ffffff;
+  --background-color-light: #ffffff;
+  --background-color-dark: #1a1a1a;
+  --text-color-light: #000000;
+  --text-color-dark: #ffffff;
+  --hints-background-color-light: #e5e5e5;
+  --hints-background-color-dark: #0d3b66;
+  --hints-text-color-light: #333;
+  --hints-font-color-dark: #f2f2f2;
+  --service-background-color: #222027;
+  --todoist-button-background-color: #db4c3f;
+  --todoist-button-hover-color: #e0665a;
+  --todoist-hover-color: #422c2a;
+  --obsidian-button-background-color: #7f62f5;
+  --obsidian-button-hover-color: #8d79f7;
+  --obsidian-hover-color: #2e2a3b;
+  --button-text-color: #ffffff;
 }
 
 body {
-    width: 35em;
-    background-color: var(--background-color-light);
-    color: var(--text-color-light);
+  width: 35em;
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: var(--background-color-dark);
-        color: var(--text-color-dark);
-    }
+  body {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+  }
 }
 
 .service {
-    background-color: var(--service-background-color);
-    padding: 0.2em 1em;
-    margin: 1em 0em;
-    border-radius: 0.5em;
-    transition: background-color 0.3s ease-in-out;
+  background-color: var(--service-background-color);
+  padding: 0.2em 1em;
+  margin: 1em 0em;
+  border-radius: 0.5em;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .todoist:hover {
-    background-color: var(--todoist-hover-color);
+  background-color: var(--todoist-hover-color);
 }
 
 .obsidian:hover {
-    background-color: var(--obsidian-hover-color);
+  background-color: var(--obsidian-hover-color);
 }
 
 .todoist button {
-    background-color: var(--todoist-button-background-color);
+  background-color: var(--todoist-button-background-color);
 }
 
 .todoist button:hover {
-    background-color: var(--todoist-button-hover-color);
+  background-color: var(--todoist-button-hover-color);
 }
 
 .obsidian button {
-    background-color: var(--obsidian-button-background-color);
+  background-color: var(--obsidian-button-background-color);
 }
 
 .obsidian button:hover {
-    background-color: var(--obsidian-button-hover-color);
+  background-color: var(--obsidian-button-hover-color);
 }
 
 button {
-    border: none;
-    border-radius: 0.5em;
-    color: var(--button-text-color);
-    cursor: pointer;
-    padding: 0.5em 0.5em;
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
-    width: 100%;
+  border: none;
+  border-radius: 0.5em;
+  color: var(--button-text-color);
+  cursor: pointer;
+  padding: 0.5em 0.5em;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+  width: 100%;
 }
 
 .plugin {
-    display: block;
-    justify-content: center;
-    align-items: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
 }
 
 .plugin-config-container {
-    align-items: center;
-    border-radius: 0.5em;
-    display: block;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease-in-out;
+  align-items: center;
+  border-radius: 0.5em;
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
 }
 
 .plugin-config {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
 .plugin-header-container {
-    display: flex;
-    cursor: pointer;
-    padding: 1em 0;
+  display: flex;
+  cursor: pointer;
+  padding: 1em 0;
 }
 
 .plugin-header-container:after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
-    .plugin-toggle label {
-    --size: 50px;
+.plugin-toggle label {
+  --size: 50px;
 }
 
 .header-column {
-    display: flex;
-    float: left;
-    margin: auto;
+  display: flex;
+  float: left;
+  margin: auto;
 }
 
 .plugin-icon {
-    height: 32px;
-    width: 32px;
-    margin-right: 1em;
+  height: 32px;
+  width: 32px;
+  margin-right: 1em;
 }
 
 .header-title {
-    width: 100%;
+  width: 100%;
 }
 
 .header-title h1 {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .keybindings {
-    margin-top: 0;
-    margin-bottom: 1em;
-    padding: 0.3em;
-    border: 1px solid #777;
-    border-radius: 0.5em;
-    background-image: linear-gradient(to right, #222 0%, #222 33%, var(--hints-background-color-light) 33%, var(--hints-background-color-light) 100%);
-    color: var(--hints-text-color-light);
-    opacity: 0.5;
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding: 0.3em;
+  border: 1px solid #777;
+  border-radius: 0.5em;
+  background-image: linear-gradient(
+    to right,
+    #222 0%,
+    #222 33%,
+    var(--hints-background-color-light) 33%,
+    var(--hints-background-color-light) 100%
+  );
+  color: var(--hints-text-color-light);
+  opacity: 0.5;
 }
 
 @media (prefers-color-scheme: dark) {
-    .keybindings {
-        background-image: linear-gradient(to right, #222 0%, #222 33%, var(--hints-background-color-dark) 33%, var(--hints-background-color-dark) 100%);
-        color: var(--hints-font-color-dark);
-    }
+  .keybindings {
+    background-image: linear-gradient(
+      to right,
+      #222 0%,
+      #222 33%,
+      var(--hints-background-color-dark) 33%,
+      var(--hints-background-color-dark) 100%
+    );
+    color: var(--hints-font-color-dark);
+  }
 }
 
 .keybinding-line {
-    display: flex;
-    font-size: 1em;
+  display: flex;
+  font-size: 1em;
 }
 
 .keybinding-key-combination-wrapper {
-    flex: 1;
+  flex: 1;
 }
 
 .keybinding-description-wrapper {
-    flex: 2;
+  flex: 2;
 }
 
 .keybinding-key-combination {
-    display: flex;
-    font-weight: bold;
-    margin-right: 1em;
-    padding-left: 1em;
+  display: flex;
+  font-weight: bold;
+  margin-right: 1em;
+  padding-left: 1em;
 }
 
 .keybinding-description {
-    display: flex;
-    margin-left: 2em;
+  display: flex;
+  margin-left: 2em;
 }

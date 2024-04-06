@@ -1,20 +1,10 @@
-function toggleFootnotes() {
-    chrome.tabs.query({ active: true, currentWindow: true }, async function(tabs) {
-        const response = await chrome.scripting.executeScript({
-            target: { tabId: tabs[0].id },
-            function: function() {
-                return !!getComputedStyle(document.documentElement).getPropertyValue('--arc-palette-title');
-            }
-        });
-        if (response[0].result) {
-            console.log("Arc Browser detected");
-
-        } else { // Chrome
-            chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
-                chrome.sidePanel.open({ tabId: tab.id });
-            });
+function toggleSidenotesPane() {
+    chrome.tabs.query(
+        { active: true, currentWindow: true },
+        async function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { action: "toggleSidenotes" });
         }
-    });
+    );
 }
 
 function createNewObsidianNote() {
@@ -32,16 +22,24 @@ function createNewObsidianNote() {
 
 chrome.runtime.onMessage.addListener((message) => {
     if (message.action === "collectedHighlightedTextsAndComments") {
-        const highlightedTexts = message.mapping;
+        const notes = message.mapping;
         encodeNotesForObsidian(function(encodedContent) {
             getObsidianVaultName().then(function(vaultName) {
-                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                    const title = tabs[0].title;
-                    var obsidianUrl = constructObsidianUrl(title, encodedContent, vaultName, highlightedTexts);
-                    chrome.tabs.create({ url: obsidianUrl });
-                });
+                chrome.tabs.query(
+                    { active: true, currentWindow: true },
+                    function(tabs) {
+                        const title = tabs[0].title;
+                        var obsidianUrl = constructObsidianUrl(
+                            title,
+                            encodedContent,
+                            vaultName,
+                            notes,
+                        );
+                        chrome.tabs.create({ url: obsidianUrl });
+                    },
+                );
             });
-        }, highlightedTexts);
+        }, notes);
     }
 });
 
@@ -57,14 +55,16 @@ function encodeNotesForObsidian(callback, references) {
         var url = tabs[0].url;
         var timestamp = getTimestampString();
 
-        var content = `---\naliases: []\ntags: #reference\ntimestamp: ${timestamp}\n---\n`
+        var content = `---\naliases: []\ntags: #reference\ntimestamp: ${timestamp}\n---\n`;
         content += `## Summary\n\n\n\n`;
         if (Object.keys(references).length > 0) {
             content += `---\n## References\n`;
-            Object.entries(references).forEach(([highlightedText, comments]) => {
-                content += ` - ${highlightedText}\n`;
+            references.forEach(({ text, type, comments }) => {
+                const listItem = type === "highlight" ? text : `**NOTE:** ${text}`;
+                content += ` - ${listItem}\n`;
                 if (comments.length > 0) {
-                    content += comments.map(comment => `   - ${comment}`).join('\n') + '\n';
+                    content +=
+                        comments.map((comment) => `   - ${comment}`).join("\n") + "\n";
                 }
             });
         }
@@ -86,8 +86,10 @@ function getTimestampString() {
 
 function getObsidianVaultName() {
     return new Promise(function(resolve, reject) {
-        chrome.storage.sync.get('obsidianVaultName', function(data) {
-            var vaultName = data.obsidianVaultName ? encodeURIComponent(data.obsidianVaultName) : null;
+        chrome.storage.sync.get("obsidianVaultName", function(data) {
+            var vaultName = data.obsidianVaultName
+                ? encodeURIComponent(data.obsidianVaultName)
+                : null;
             resolve(vaultName);
         });
     });
@@ -104,13 +106,13 @@ function constructObsidianUrl(title, content, vaultName) {
 
 function sanitizeTitleForFilename(title) {
     const forbiddenChars = /[\/\\?%*:|"<>]/g;
-    return title.replace(forbiddenChars, '_');
+    return title.replace(forbiddenChars, "_");
 }
 
-
 function isObsidianEnabled(callback) {
-    chrome.storage.sync.get('isObsidianEnabled', function(data) {
-        var isEnabled = data.isObsidianEnabled !== undefined ? data.isObsidianEnabled : true;
+    chrome.storage.sync.get("isObsidianEnabled", function(data) {
+        var isEnabled =
+            data.isObsidianEnabled !== undefined ? data.isObsidianEnabled : true;
         callback(isEnabled);
     });
 }

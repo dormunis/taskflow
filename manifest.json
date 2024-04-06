@@ -8,8 +8,7 @@
         "scripting",
         "storage",
         "identity",
-        "notifications",
-        "sidePanel"
+        "notifications"
     ],
     "icons": {
         "16": "res/cog-16.png",
@@ -28,8 +27,7 @@
                 "<all_urls>"
             ],
             "js": [
-                "notesContent.js",
-                "notesSidepanel.js"
+                "notesContent.js"
             ],
             "run_at": "document_idle"
         }
@@ -47,7 +45,7 @@
                 "default": "Ctrl+Shift+F",
                 "mac": "MacCtrl+Shift+F"
             },
-            "description": "Toggle footnotes sidepanel"
+            "description": "Toggle sidenotes"
         },
         "obsidian_add-reference": {
             "suggested_key": {
@@ -63,9 +61,6 @@
             },
             "description": "Mark Obsidian reference"
         }
-    },
-    "side_panel": {
-        "default_path": "footnotes/sidepanel.html"
     },
     "oauth2": {
         "client_id": "7b68b822195f4e5d91a611d83a2d1cc5",
