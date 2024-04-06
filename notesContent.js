@@ -311,12 +311,12 @@ function taskflow__addSidenote() {
             event.key === "Escape"
         ) {
             event.preventDefault();
-            this.blur();
             // TODO: fix bug when sidenote panel is toggled and a sidenote is added, the sidenote panel does not update
             const sidenotePanel = document.getElementById("taskflow-sidenote-panel");
             if (sidenotePanel) {
                 taskflow__refreshSidenotePane()
             }
+            this.blur();
         }
     });
 
