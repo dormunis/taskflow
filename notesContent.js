@@ -1,6 +1,15 @@
 const TASKFLOW__ASSOCIATION_PREFIX_HIGHLIGHT = "highlight";
 const TASKFLOW__ASSOCIATION_PREFIX_SIDENOTE = "sidenote";
 
+window.addEventListener("beforeunload", function(event) {
+    const highlights = taskflow__collectHighlights();
+    const sidenotes = taskflow__collectSidenotes();
+    if (highlights.length > 0 || sidenotes.length > 0) {
+        event.returnValue = "There are unsaved highlights or sidenotes. Are you sure you want to leave?";
+    }
+});
+
+
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message.action === "logSelectedText") {
         const selection = window.getSelection();
@@ -486,7 +495,7 @@ function taskflow__addComment(associatedId, posX, posY) {
     });
 }
 
-function taskflow__collectNotes() {
+function taskflow__collectHighlights() {
     const highlightedSpans = document.querySelectorAll(
         ".taskflow-highlighted-text",
     );
@@ -518,7 +527,12 @@ function taskflow__collectNotes() {
         });
     });
 
+    return mapping;
+}
+
+function taskflow__collectSidenotes() {
     const sidenotes = document.querySelectorAll(".taskflow-sidenote-container");
+    const mapping = [];
     sidenotes.forEach((sidenote) => {
         const text = sidenote.querySelector("textarea").value;
         if (text.trim() === "") {
@@ -530,6 +544,15 @@ function taskflow__collectNotes() {
             comments: [],
         });
     });
+    return mapping;
+}
+
+function taskflow__collectNotes() {
+    const highlights = taskflow__collectHighlights();
+    const sidenotes = taskflow__collectSidenotes();
+
+    const mapping = [];
+    mapping.push(...highlights, ...sidenotes);
 
     chrome.runtime.sendMessage({
         action: "collectedHighlightedTextsAndComments",
