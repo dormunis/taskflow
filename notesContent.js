@@ -10,7 +10,7 @@ window.addEventListener("beforeunload", function(event) {
 });
 
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function(message) {
     if (message.action === "logSelectedText") {
         const selection = window.getSelection();
         if (selection.rangeCount) {

@@ -85,7 +85,7 @@ function getTimestampString() {
 }
 
 function getObsidianVaultName() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve) {
         chrome.storage.sync.get("obsidianVaultName", function(data) {
             var vaultName = data.obsidianVaultName
                 ? encodeURIComponent(data.obsidianVaultName)
