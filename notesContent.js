@@ -196,7 +196,7 @@ function taskflow__createSidenoteInstance(idx, containerId, text) {
     sidenoteInstance.setAttribute("taskflow-data-sidenote-id", idx);
     sidenoteInstance.setAttribute("taskflow-sidenote-container-id", containerId);
     sidenoteInstance.classList.add("taskflow-sidenote");
-    sidenoteInstance.style.width = "20em";
+    sidenoteInstance.style.max_width = "20em";
     sidenoteInstance.style.opacity = "0.6";
     sidenoteInstance.style.backgroundColor = "#333";
     sidenoteInstance.style.border = "2px solid #eee";
@@ -493,6 +493,8 @@ function taskflow__addComment(associatedId, posX, posY) {
         this.readOnly = false;
         this.focus();
     });
+
+    commentBox.focus();
 }
 
 function taskflow__collectHighlights() {
