@@ -77,8 +77,12 @@ function taskflow__handleSidenoteKeyPresses(event) {
 
 function taskflow__toggleSidenotes() {
     const sidenotePanel = document.getElementById("taskflow-sidenote-panel");
-    if (sidenotePanel) {
+    if (sidenotePanel && sidenotePanel.style.display !== "none") {
         taskflow__removeSidenotePane();
+        return;
+    } else if (sidenotePanel) {
+        sidenotePanel.style.display = "block";
+        document.addEventListener("keydown", taskflow__handleSidenoteKeyPresses);
         return;
     }
 
@@ -115,13 +119,25 @@ function taskflow__toggleSidenotes() {
 
 function taskflow__removeSidenotePane() {
     const sidenotePanel = document.getElementById("taskflow-sidenote-panel");
-    sidenotePanel.remove();
+    sidenotePanel.style.display = "none";
     document.removeEventListener("keydown", taskflow__handleSidenoteKeyPresses);
+
     const activeSidenoteBox = document.querySelector("[taskflow-sidenote-box-active='true']");
     if (activeSidenoteBox) {
         activeSidenoteBox.style.display = "none";
         activeSidenoteBox.setAttribute("taskflow-sidenote-box-active", "false");
     }
+
+    const insertModeSidenotes = document.querySelectorAll(".taskflow-insert-mode");
+    insertModeSidenotes.forEach((sidenote) => {
+        sidenote.classList.remove("taskflow-insert-mode");
+    });
+
+    const taskflowSidenotes = document.querySelectorAll(".taskflow-sidenote");
+    taskflowSidenotes.forEach((sidenote) => {
+        sidenote.style.border = "0";
+    });
+
 }
 
 function taskflow__refreshSidenotePane() {
