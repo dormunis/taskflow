@@ -196,7 +196,7 @@ function taskflow__createSidenoteInstance(idx, containerId, text) {
     sidenoteInstance.setAttribute("taskflow-data-sidenote-id", idx);
     sidenoteInstance.setAttribute("taskflow-sidenote-container-id", containerId);
     sidenoteInstance.classList.add("taskflow-sidenote");
-    sidenoteInstance.style.max_width = "20em";
+    sidenoteInstance.style.maxWidth = "20em";
     sidenoteInstance.style.opacity = "0.6";
     sidenoteInstance.style.backgroundColor = "#333";
     sidenoteInstance.style.border = "2px solid #eee";
@@ -210,7 +210,7 @@ function taskflow__createSidenoteInstance(idx, containerId, text) {
 
     const sidenoteText = document.createElement("span");
     sidenoteText.style.color = "#fff";
-    sidenoteText.style.fontSize = "1em";
+    sidenoteText.style.fontSize = "1.8vw";
     sidenoteText.textContent = text;
     sidenoteInstance.appendChild(sidenoteText);
 
@@ -295,7 +295,7 @@ function taskflow__addSidenote() {
     commentBox.style.height = "3em";
     commentBox.style.color = "black";
     commentBox.style.borderRadius = "5px";
-    commentBox.style.fontSize = "1em";
+    commentBox.style.fontSize = "1.8vw";
     commentBox.style.backgroundColor = "#fff";
     commentBox.style.border = "1px solid black";
     commentBox.style.padding = "5px";
@@ -444,7 +444,7 @@ function taskflow__addComment(associatedId, posX, posY) {
     const commentBox = document.createElement("textarea");
     commentBox.style.color = "black";
     commentBox.style.borderRadius = "5px";
-    commentBox.style.fontSize = "1em";
+    commentBox.style.fontSize = "1.8vw";
     commentBox.style.backgroundColor = "#fff";
     commentBox.style.border = "1px solid black";
     commentBox.style.padding = "5px";
